@@ -20,7 +20,7 @@ import javafx.scene.layout.VBox
 import com.google.inject.Inject
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
-import com.bjb.upmfx.data.DefaultSerialPortParameters
+import com.bjb.upmfx.data.DefaultPortParameters
 
 class MainWinController {
 	
@@ -123,16 +123,16 @@ class MainWinController {
     	if(!portChoiceBox.items.empty){ portChoiceBox.value = portChoiceBox.items.get(0) }    	
     	
     	baudrateChoiceBox.setItems(FXCollections.observableArrayList(BAUD.values))
-    	baudrateChoiceBox.setValue(DefaultSerialPortParameters::PARAMETERS.baudRate);
+    	baudrateChoiceBox.setValue(DefaultPortParameters::PARAMETERS.baudRate);
     	    	    	
     	parityChoiceBox.setItems(FXCollections.observableArrayList(PARITY.values))
-    	parityChoiceBox.setValue(DefaultSerialPortParameters::PARAMETERS.parity)
+    	parityChoiceBox.setValue(DefaultPortParameters::PARAMETERS.parity)
     	    	
     	stopBitsChoiceBox.setItems(FXCollections.observableArrayList(STOPBITS.values))
-    	stopBitsChoiceBox.setValue(DefaultSerialPortParameters::PARAMETERS.stopBits) 
+    	stopBitsChoiceBox.setValue(DefaultPortParameters::PARAMETERS.stopBits) 
     	
     	dataBitsChoiceBox.setItems(FXCollections.observableArrayList(DATABITS.values))
-    	dataBitsChoiceBox.setValue(DefaultSerialPortParameters::PARAMETERS.dataBits)  
+    	dataBitsChoiceBox.setValue(DefaultPortParameters::PARAMETERS.dataBits)  
 		
 		
 		mainView.pumpSpeedProperty.addListener[obs, oldVal, newVal |
