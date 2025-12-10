@@ -11,7 +11,7 @@ import javafx.application.Platform
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 
-import static extension com.bjb.upmfx.data.Util.*
+import static extension com.bjb.upmfx.common.Util.*
 
 class SerialPortThread extends Thread{
 		

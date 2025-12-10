@@ -1,7 +1,7 @@
 package com.bjb.upmfx.wire
 
 import java.nio.ByteBuffer
-import static extension com.bjb.upmfx.data.Util.*
+import static extension com.bjb.upmfx.common.Util.*
 
 
 interface Encoder {

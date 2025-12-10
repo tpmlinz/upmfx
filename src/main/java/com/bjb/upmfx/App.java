@@ -54,7 +54,7 @@ public class App extends Application {
 
     public static void main(String[] args) {
     	
-    	Configurator.setAllLevels(LogManager.getRootLogger().getName(), Level.ALL);    	    	
+    	//Configurator.setAllLevels(LogManager.getRootLogger().getName(), Level.ALL);    	    	
         launch();
     }
     

@@ -18,10 +18,16 @@ import javafx.scene.control.ListView
 import javafx.scene.control.Slider
 import javafx.scene.layout.VBox
 import com.google.inject.Inject
+import org.apache.logging.log4j.LogManager
+import org.apache.logging.log4j.Logger
+import com.bjb.upmfx.data.DefaultSerialPortParameters
 
 class MainWinController {
 	
     @Inject MainView mainView
+    
+    static val Logger logger = LogManager::getLogger(MainWinController)		
+    
 	
 	@FXML
 	var VBox connectingVBox
@@ -82,31 +88,34 @@ class MainWinController {
 	@FXML
 	def void onConnect(){
 		
-		if(mainView.connect){					
-			info('''connected to «port.systemPortName»''')		
+		if(mainView.connect){	
+			info('''connected to «port.systemPortName»''')									
+			logger.info('''connected to «port.systemPortName»''')		
 			connectingVBox.visible = false
 			connectedVBox.visible = true			
 		}
 		else{
 			val str = port?.systemPortName ?: "null"
-			info('''failed to connect to «str»''')			
+			logger.info('''failed to connect to «str»''')			
 		}						
 	}
 	
 	
 	@FXML
 	def void onDisconnect(){
-		if(mainView.disconnect)
-			info('''disconnected from «port.systemPortName»''')					
+		if(mainView.disconnect){
+			info('''disconnected from «port.systemPortName»''')
+			logger.info('''disconnected from «port.systemPortName»''')			
+		}					
 		connectedVBox.visible = false
 		connectingVBox.visible = true		
 	}
 	
 	
-	 @FXML
+	@FXML
     def void initialize() { 
     	
-    	println('''init''')    	 
+    	logger.debug("MainWinController initialize")   	 
     	
     	messageListView.items = mainView.infoEntries    	   	   
     	    	
@@ -114,16 +123,16 @@ class MainWinController {
     	if(!portChoiceBox.items.empty){ portChoiceBox.value = portChoiceBox.items.get(0) }    	
     	
     	baudrateChoiceBox.setItems(FXCollections.observableArrayList(BAUD.values))
-    	baudrateChoiceBox.setValue(DEFAULT_BAUDRATE);
+    	baudrateChoiceBox.setValue(DefaultSerialPortParameters::PARAMETERS.baudRate);
     	    	    	
     	parityChoiceBox.setItems(FXCollections.observableArrayList(PARITY.values))
-    	parityChoiceBox.setValue(DEFAULT_PARITY)
+    	parityChoiceBox.setValue(DefaultSerialPortParameters::PARAMETERS.parity)
     	    	
     	stopBitsChoiceBox.setItems(FXCollections.observableArrayList(STOPBITS.values))
-    	stopBitsChoiceBox.setValue(DEFAULT_STOPBITS) 
+    	stopBitsChoiceBox.setValue(DefaultSerialPortParameters::PARAMETERS.stopBits) 
     	
     	dataBitsChoiceBox.setItems(FXCollections.observableArrayList(DATABITS.values))
-    	dataBitsChoiceBox.setValue(DEFAULT_DATABITS)  
+    	dataBitsChoiceBox.setValue(DefaultSerialPortParameters::PARAMETERS.dataBits)  
 		
 		
 		mainView.pumpSpeedProperty.addListener[obs, oldVal, newVal |
@@ -149,14 +158,7 @@ class MainWinController {
 		
 		connectButton.disableProperty.bind(mainView.connectedProperty.or(mainView.serialPortProperty.isNull))
 		disconnectButton.disableProperty.bind(connectButton.disableProperty.not)
-    }
-    
-        
-    
-    static val DEFAULT_STOPBITS = STOPBITS::ONE;
-	static val DEFAULT_PARITY = PARITY::NO_PARITY;
-	static val DEFAULT_BAUDRATE = BAUD::BR_115200;
-	static val DEFAULT_DATABITS = DATABITS::DATABITS_8;
+    }           
     
     //private def getMainView(){ MainView::instance }        
     private def getPort(){ mainView.serialPort }         

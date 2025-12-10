@@ -3,7 +3,7 @@ package com.bjb.upmfx.wire
 import org.eclipse.xtend.lib.annotations.Accessors
 import java.nio.ByteBuffer
 //import java.nio.ByteOrder
-import static extension com.bjb.upmfx.data.Util.*
+import static extension com.bjb.upmfx.common.Util.*
 
 class Message {
 	
