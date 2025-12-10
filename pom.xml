@@ -28,7 +28,55 @@
 		    <groupId>com.fazecast</groupId>
 		    <artifactId>jSerialComm</artifactId>
 		    <version>2.11.4</version>
-		</dependency>        
+		</dependency>  
+		
+		      <!-- https://mvnrepository.com/artifact/org.eclipse.xtend/org.eclipse.xtend.lib -->
+		<dependency>
+		    <groupId>org.eclipse.xtend</groupId>
+		    <artifactId>org.eclipse.xtend.lib</artifactId>
+		    <version>2.41.0</version>
+		    <type>pom</type>
+		</dependency>
+		
+<!-- https://mvnrepository.com/artifact/org.eclipse.xtext/xtend-maven-plugin -->
+<dependency>
+    <groupId>org.eclipse.xtext</groupId>
+    <artifactId>xtend-maven-plugin</artifactId>
+    <version>2.41.0</version>
+</dependency>	
+
+ 	<dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-core</artifactId>
+        <version>2.25.2</version> <!-- Use the latest stable version -->
+    </dependency>
+    <dependency>
+        <groupId>org.apache.logging.log4j</groupId>
+        <artifactId>log4j-api</artifactId>
+        <version>2.25.2</version> <!-- Use the latest stable version -->
+    </dependency>
+    
+<!--<dependency>-->
+<!--  <groupId>org.apache.logging.log4j</groupId>-->
+<!--  <artifactId>log4j-layout-template-json</artifactId>-->
+<!--  <version>2.25.2</version>-->
+<!--  <scope>runtime</scope>-->
+<!--</dependency>-->
+
+<!--<dependency>-->
+<!--    <groupId>com.fasterxml.jackson.core</groupId>-->
+<!--    <artifactId>jackson-databind</artifactId>-->
+<!--    <version>2.20.1</version>-->
+<!--    <scope>runtime</scope>-->
+<!--</dependency>-->
+
+    
+    <dependency>
+    	<groupId>com.google.inject</groupId>
+    	<artifactId>guice</artifactId>
+    	<version>7.0.0</version>
+	</dependency>
+	
         
     </dependencies>
     
@@ -57,6 +105,24 @@
                     </execution>
                 </executions>
             </plugin>
+            
+<plugin>
+    <groupId>org.eclipse.xtend</groupId>
+    <artifactId>xtend-maven-plugin</artifactId>
+    <version>2.41.0</version>
+    <executions>
+        <execution>
+            <goals>
+                <goal>compile</goal>
+                <goal>testCompile</goal>
+            </goals>
+            <configuration>
+              <outputDirectory>${project.build.directory}/xtend-gen/main</outputDirectory>
+        	  <testOutputDirectory>${project.build.directory}/xtend-gen/test</testOutputDirectory>
+            </configuration>
+        </execution>
+    </executions>
+</plugin>            
             
         </plugins>
     </build>
