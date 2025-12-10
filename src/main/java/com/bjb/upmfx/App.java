@@ -48,13 +48,8 @@ public class App extends Application {
     private static Parent loadFXML(String fxml) throws IOException {
     	Injector injector = Guice.createInjector(new AppModule());    	
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource(fxml + ".fxml"));
-        fxmlLoader.setControllerFactory(injector::getInstance);
-        //fxmlLoader.getController();
-        //Parent parent = fxmlLoader.load();
-        //return parent;
-        //Parent root = loader.<Parent>load();
+        fxmlLoader.setControllerFactory(injector::getInstance);       
         return fxmlLoader.<Parent>load();
-        //return fxmlLoader.load();
     }
 
     public static void main(String[] args) {

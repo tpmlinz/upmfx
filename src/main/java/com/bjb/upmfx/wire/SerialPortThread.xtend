@@ -29,6 +29,7 @@ class SerialPortThread extends Thread{
 	val cancelled = new AtomicBoolean(false)	
 	val reset = new AtomicBoolean(false)
 	
+	//FIXME too many IO methods??
 	val Supplier<SerialPort> portProvider	
 	val Consumer<Message> messageRecorder	
 	val Consumer<String> infoHandler
@@ -154,21 +155,6 @@ class SerialPortThread extends Thread{
 	
 	private def recordMessage(Message msg){ messageRecorder.accept(msg) }
 	
-	
-//	private def void processQueue(){
-//		
-//		val qitem = queue.poll(200, TimeUnit::MILLISECONDS)
-//		
-//		if(qitem !== null){
-//			val value = qitem.value
-//			
-////			switch(qitem.key){
-////				//case QUEUE_ID::SET_CANCELLED: cancelled = true
-////				case QUEUE_ID::SET_PORT: serialPort = value as SerialPort
-////				//case QUEUE_ID::SET_RECEIVER: receiver = value as MessageReceiver
-////			}		
-//		}				
-//	}
 	
 	private def isReset(){ reset.get }
 	

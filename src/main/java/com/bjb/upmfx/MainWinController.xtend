@@ -21,7 +21,7 @@ import com.google.inject.Inject
 
 class MainWinController {
 	
-    @Inject MainView mainView		
+    @Inject MainView mainView
 	
 	@FXML
 	var VBox connectingVBox

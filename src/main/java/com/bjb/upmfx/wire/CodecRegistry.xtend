@@ -1,5 +1,8 @@
 package com.bjb.upmfx.wire
 
+/*
+ * A registry (hash map) mapping ids to Codecs
+ */
 class CodecRegistry {	
 	
 	val codecs = <Byte, Codec>newHashMap
@@ -24,9 +27,17 @@ class CodecRegistry {
 		codecs.get(message.id)?.encoder?.encode(message)
 	}
 	
-	def void register(byte id, Encoder encoder, Decoder decoder){
-		codecs.put(id, new Codec(encoder, decoder))
+	def void register(byte id, Codec codec){
+		if(codec.encoder === null && codec.decoder === null)
+			throw new IllegalArgumentException
+		codecs.put(id, codec)			
 	}
+	
+	def void register(byte id, Encoder encoder, Decoder decoder){					
+		register(id, new Codec(encoder, decoder))
+	}
+	
+	def void unregister(byte id){ codecs.remove(id) }
 	
 	def isRegistered(byte id){ codecs.get(id) !== null }
 }

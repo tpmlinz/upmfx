@@ -41,18 +41,7 @@ class MainView {
 	//@Accessors(PUBLIC_GETTER)
 	//val serialThread = new SerialPortThread	
 	
-	def getSerialThread(){ serialThread }
-	
-	//[x] mainview
-	//info property
-	//port property
-	//celsius property
-	//pump speed property
-	//pwm enable property
-	//pwm duty cycle
-	//possibly pwm frequency
-	
-	//Get && set should be final!!!!!!!!
+	def getSerialThread(){ serialThread }	
 	
 	// Derivd connected property
 	val connectedProperty = new SimpleBooleanProperty(false)
